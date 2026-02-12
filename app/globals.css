@@ -1,0 +1,14 @@
+@import "tailwindcss";
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 30;
+    transform: translateY(0);
+  }
+}
+
+
