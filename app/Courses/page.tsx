@@ -5,7 +5,7 @@ import Link from "next/link";
 import Footer from "../component/Footer";
 
 interface IconData {
-  icon: React.ComponentType;
+icon: React.ComponentType<{ className?: string }>;
   color: string;
   bgColor?: string;
    size?: string;
