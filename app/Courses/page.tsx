@@ -457,7 +457,7 @@ export default function CourseCards() {
           {/* Icons with different styling - FIXED */}
           <div className="flex flex-wrap gap-2 mb-6">
             {course.icons.map((iconData, idx) => {
-              const Icon = iconData.icon;
+              const Icon = iconData.icon as React.ComponentType<{ className?: string }>;
               return (
                 <div 
                    key={idx} 
