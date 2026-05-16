@@ -78,7 +78,7 @@ export default function PaymentPage() {
                       type="text" 
                       className="w-full p-3 border rounded-lg" 
                       placeholder="1234 5678 9012 3456"
-                      maxLength="19"
+                      maxLength={19}
                     />
                   </div>
                   <div className="grid grid-cols-2 gap-4">
@@ -88,7 +88,7 @@ export default function PaymentPage() {
                     </div>
                     <div>
                       <label className="block text-sm font-medium mb-1">CVV</label>
-                      <input type="text" className="w-full p-3 border rounded-lg" placeholder="123" maxLength="3" />
+                      <input type="text" className="w-full p-3 border rounded-lg" placeholder="123" maxLength={3} />
                     </div>
                   </div>
                 </div>
