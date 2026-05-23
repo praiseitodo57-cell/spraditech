@@ -1,519 +1,293 @@
+
 import Navbar from "../component/NavBar";
-import {Clock4, Users, MapPin, TrendingUp, DollarSign, CircleCheckBig, Target, Calendar , FolderOpen , Briefcase , Video, Megaphone, Wifi, Bitcoin, Cog, Lock, Film, Award, Shield, BookOpen, Phone, Mail, Clock, Eye, Zap, Globe, Heart, Trophy, Server, Search, ArrowRight } from "lucide-react"
+import { Users, Calendar, Eye, Heart, Search, ArrowRight, Clock } from "lucide-react";
 import Footer from "@/app/component/Footer";
 import Image from "next/image";
 
+const featuredArticles = [
+  { img: "/pho2.jpg", tag: "Data Analytics", title: "12 Transformative Advantages of Computer Networking", excerpt: "Discover 12 transformative advantages of computer networking with real-world case studies.", author: "Chika Agbakwuru", readTime: "5 min read", date: "December 15, 2024" },
+  { img: "/pho3.jpg", tag: "Cybersecurity", title: "10 Essential Cybersecurity Skills for Nigerian Businesses", excerpt: "As cyber threats increase across Africa, discover the critical skills every professional needs.", author: "Eng. Fatima Abdullahi", readTime: "7 min read", date: "December 12, 2024" },
+  { img: "/pho5.jpg", tag: "Software Engineering", title: "From Lagos to Silicon Valley: Our Graduates' Stories", excerpt: "Meet our software engineering graduates who have landed roles at top global tech companies.", author: "Chioma Nwankwo", readTime: "6 min read", date: "December 10, 2024" },
+];
 
-export default async function About() {
-    return(
-      <div>
-        <div>
-            <Navbar/>
-        </div>
+const latestArticles = [
+  {
+    img: "/pho5.jpg", tag: "AI Engineering", tagColor: "bg-blue-100 text-blue-800",
+    title: "AI and Machine Learning: Opportunities in the Nigerian Market",
+    excerpt: "Discover the growing demand for AI professionals in Nigeria and how our AI Engineering program prepares you for these opportunities.",
+    author: "Prof. Ibrahim Musa", date: "12/8/2024", views: 743, likes: 52,
+    tags: ["Artificial Intelligence", "Machine Learning", "Career Opportunities"],
+  },
+  {
+    img: "/pho5.jpg", tag: "UI/UX Design", tagColor: "bg-pink-100 text-pink-800",
+    title: "UI/UX Design Trends Shaping African Digital Products",
+    excerpt: "Learn about the latest design trends that are influencing user experience across African digital platforms and mobile apps.",
+    author: "Grace Okoro", date: "12/5/2024", views: 634, likes: 41,
+    tags: ["Design Trends", "Mobile UX", "Africa Tech"],
+  },
+  {
+    img: "/pho5.jpg", tag: "Digital Marketing", tagColor: "bg-orange-100 text-orange-800",
+    title: "Digital Marketing Strategies for Nigerian Startups",
+    excerpt: "Effective digital marketing tactics that Nigerian startups are using to scale their businesses and reach global audiences.",
+    author: "Olumide Adeyemi", date: "12/3/2024", views: 521, likes: 38,
+    tags: ["SEO", "Social Media", "Startups"],
+  },
+];
 
-        <section className="py-12 bg-gray-200 ">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-25">
-        <div className="text-center mb-12">
-        <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Tech Insights & Industry News</h1>
-       <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">Stay ahead in your tech career with expert insights, industry trends, and success stories from the Nigerian tech ecosystem.</p>
-    </div>
-      <div className="grid lg:grid-cols-4 gap-8">
-    <div className="lg:col-span-3">
+const categories = [
+  { label: "Data Analytics", count: 12, color: "bg-blue-100 text-blue-800" },
+  { label: "Software Engineering", count: 8, color: "bg-green-100 text-green-600" },
+  { label: "Cybersecurity", count: 6, color: "bg-red-100 text-red-600" },
+  { label: "AI Engineering", count: 6, color: "bg-purple-100 text-purple-600" },
+  { label: "UI/UX Design", count: 7, color: "bg-pink-100 text-pink-600" },
+  { label: "Digital Marketing", count: 4, color: "bg-orange-100 text-orange-600" },
+];
 
-      <div className=" ">
-       <div className="">
-     <div className="space-y-8">
-  
-         <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 ">
-         <h2 className="text-lg font-bold text-gray-900 mb-4">Browse by Category</h2>
-        <div className="flex flex-wrap gap-2">
-            <button className="px-4 py-2 rounded-full text-sm font-medium transition-colors bg-blue-800 text-white">All Posts</button>
-            <button className="px-4 py-2 rounded-full text-sm font-medium transition-colors bg-gray-100 text-gray-700 hover:bg-gray-200">Data Analytics</button>
-            <button className="px-4 py-2 rounded-full text-sm font-medium transition-colors bg-gray-100 text-gray-700 hover:bg-gray-200">Software Engineering</button>
-            <button className="px-4 py-2 rounded-full text-sm font-medium transition-colors bg-gray-100 text-gray-700 hover:bg-gray-200">Cybersecurity</button>
-            <button className="px-4 py-2 rounded-full text-sm font-medium transition-colors bg-gray-100 text-gray-700 hover:bg-gray-200">AI Engineering</button>
-            <button className="px-4 py-2 rounded-full text-sm font-medium transition-colors bg-gray-100 text-gray-700 hover:bg-gray-200">UI/UX Design</button>
-            <button className="px-4 py-2 rounded-full text-sm font-medium transition-colors bg-gray-100 text-gray-700 hover:bg-gray-200">Digital Marketing</button>
-        </div>
-    </div>
-        </div>
-        <div className="space-y-6 mt-10">
-        <h2 className="text-2xl font-bold text-gray-900">Featured Articles</h2>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <article className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover:transform hover:translate-y-1">
-         <div className="relative">
-                  <Image
-                src="/pho2.jpg" 
-                width={0}        
-                height={0}       
-                alt="Picture of the author"
-                className=" object-cover w-full h-48"
-                />
-                  <div className="absolute top-4 left-4">
-                    <span className="bg-blue-800 text-white px-3 py-1 rounded-full text-xs font-medium">Data Analytics</span>
-                  </div>
-                </div>
-                <div className="p-6">
-                  <h3 className="text-xl font-bold text-gray-900 mb-3 line-clamp-2">12 Transformative Advantages of Computer</h3>
-                  <p className="text-gray-600 mb-4 line-clamp-3 leading-relaxed">Discover 12 transformative advantages of computer networking with real-world case</p>
-                  <div className="flex items-center justify-between text-sm text-gray-500 mb-4">
-                    <div className="flex items-center space-x-4">
-                      <div className="flex items-center space-x-1">
-                        <Users className="w-4 h-4"/>
-                        <span>Chika Agbakwuru</span>
-                      </div>
-                      <div className="flex items-center space-x-1">
-                        <Clock className="w-4 h-4"/>
-                        <span>5 min read</span>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center space-x-1 text-sm text-gray-500">
-                      <Calendar className="w-4 h-4"/>
-                      <span>December 15, 2024</span>
-                    </div>
-                    <button className=" cursor-pointer inline-flex items-center justify-center gap-2 whitespace-nowrap font-medium transition-colors focus-visible:ring-1 focus-visible:ring-ring disabled:poiter-events-none disabled:opacity-50 hover:bg-accent h-8 rounded-md text-xs text-blue-800 hover:text-blue-900 p-0">Read More</button>
-                  </div>
-                </div>
-              </article>
-              <article className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover:transform hover:translate-y-1">
-                <div className="relative">
-                  <Image
-                src="/pho3.jpg" 
-                width={0}        
-                height={0}       
-                alt="Picture of the author"
-                className=" object-cover w-full h-48"
-                />
-                  <div className="absolute top-4 left-4">
-                    <span className="bg-blue-800 text-white px-3 py-1 rounded-full text-xs font-medium">Cybersecurity</span>
-                  </div>
-                </div>
-                <div className="p-6">
-                  <h3 className="text-xl font-bold text-gray-900 mb-3 line-clamp-2">10 Essential Cybersecurity</h3>
-                  <p className="text-gray-600 mb-4 line-clamp-3 leading-relaxed">As cyber threats increase across Africa, discover the critical</p>
-                  <div className="flex items-center justify-between text-sm text-gray-500 mb-4">
-                    <div className="flex items-center space-x-4">
-                      <div className="flex items-center space-x-1">
-                        <Users className="w-4 h-4"/>
-                        <span>Eng. Fatima Abdullahi</span>
-                      </div>
-                      <div className="flex items-center space-x-1">
-                        <Clock className="w-4 h-4"/>
-                        <span>7 min read</span>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center space-x-1 text-sm text-gray-500">
-                      <Calendar className="w-4 h-4"/>
-                      <span>December 12, 2024</span>
-                    </div>
-                    <button className=" cursor-pointer inline-flex items-center justify-center gap-2 whitespace-nowrap font-medium transition-colors focus-visible:ring-1 focus-visible:ring-ring disabled:poiter-events-none disabled:opacity-50 hover:bg-accent h-8 rounded-md text-xs text-blue-800 hover:text-blue-900 p-0">Read More</button>
-                  </div>
-                </div>
-              </article>
-              <article className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover:transform hover:translate-y-1">
-                <div className="relative">
-                  <Image
-                src="/pho5.jpg" 
-                width={0}        
-                height={0}       
-                alt="Picture of the author"
-                className=" object-cover w-full h-48"
-                />
-                  <div className="absolute top-4 left-4">
-                    <span className="bg-blue-800 text-white px-3 py-1 rounded-full text-xs font-medium">Software Engineering</span>
-                  </div>
-                </div>
-                <div className="p-6">
-                  <h3 className="text-xl font-bold text-gray-900 mb-3 line-clamp-2">From Lagos to Silicon Valley:</h3>
-                  <p className="text-gray-600 mb-4 line-clamp-3 leading-relaxed">Meet our software engineering graduates who have landed roles</p>
-                  <div className="flex items-center justify-between text-sm text-gray-500 mb-4">
-                    <div className="flex items-center space-x-4">
-                      <div className="flex items-center space-x-1">
-                        <Users className="w-4 h-4"/>
-                        <span>Chioma Nwankwo</span>
-                      </div>
-                      <div className="flex items-center space-x-1">
-                        <Clock className="w-4 h-4"/>
-                        <span>6 min read</span>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center space-x-1 text-sm text-gray-500">
-                      <Calendar className="w-4 h-4"/>
-                      <span>December 10, 2024</span>
-                    </div>
-                
-                    <button className=" cursor-pointer inline-flex items-center justify-center gap-2 whitespace-nowrap font-medium transition-colors focus-visible:ring-1 focus-visible:ring-ring disabled:poiter-events-none disabled:opacity-50 hover:bg-accent h-8 rounded-md text-xs text-blue-800 hover:text-blue-900 p-0 cursor-poiter">Read More</button>
-                  </div>
-                </div>
-              </article>
-            </div>
-            <div className="space-y-6 ">
-              <div className="">
-                <div className="space-y-6 mt-15">
-                    <h2 className="text-2xl font-bold text-gray-900">Latest Articles</h2>
-                    <div className="grid gap-6 ">
-                        <article className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 hover:shadow-lg transition-all duration-300">
-                        <div className="grid md:grid-cols-3 gap-6">
-                            <div className="md:col-span-1">
-                                <Image
-                                src="/pho5.jpg" 
-                                  width={0}        
-                                  height={0}       
-                                alt="Picture of the author"
-                                className=" object-cover w-full h-60"
-                                />
-                            </div>
-                            <div className="md:col-span-2 ">
-                                <div className="flex items-center space-x-2 mb-3 ">
-                                    <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs font-medium">AI Engineering</span>
-                                    <div className="flex items-center space-x-1 text-xs text-gray-500"></div>
-                                </div>
-                                <h3 className="text-xl font-bold text-gray-900 mb-3 line-clamp-2">AI and Machine Learning: Opportunities in the Nigerian Market</h3>
-                                <p className="text-gray-600 mb-4 line-clamp-3 leading-relaxed">Discover the growing demand for AI professionals in Nigeria and how our AI Engineering program prepares you for these opportunities.</p>
-                                <div className="flex items-center justify-between mb-4">
+const recentPosts = [
+  { title: "The Future of Data Analytics in Nigeria's Financial Sector", date: "12/15/2024", cat: "Data Analytics" },
+  { title: "10 Essential Cybersecurity Skills Every Nigerian Business Needs", date: "12/12/2024", cat: "Cybersecurity" },
+  { title: "From Lagos to Silicon Valley: Success Stories", date: "12/10/2024", cat: "AI Engineering" },
+  { title: "AI and Machine Learning: Opportunities in Nigeria", date: "12/8/2024", cat: "Software Engineering" },
+];
 
-                                  <div className="flex items-center space-x-4 text-sm text-gray-500">
+const tags = ["Career Advice", "Tech Trends", "Nigeria Tech", "Job Market", "Skills Development", "Industry Insights", "Success Stories", "Learning Tips", "Tech News", "Certification"];
 
-                                    <div className="flex items-center space-x-1">
-                                      <Users className="w-4 h-4"/>
-                                      <span className="w-30">Prof. Ibrahim Musa</span>
-                                    </div>
-                                    <div className="flex items-center space-x-1">
-                                      <Calendar className="w-4 h-4"/>
-                                      <span className="w-20">12/8/2024</span>
-                                    </div>
-                                  </div>
-                                  <div className="flex items-center space-x-4 text-sm text-gray-500">
+const featuredCourses = [
+  { title: "Data Analytics", desc: "Master data analysis and visualization", duration: "6 Months" },
+  { title: "Software Engineering", desc: "Build robust applications", duration: "12 Months" },
+  { title: "Cybersecurity", desc: "Protect digital assets", duration: "8 Months" },
+];
 
-                                    <div className="flex items-center space-x-1">
-                                      <Eye className="w-4 h-4"/>
-                                      <span>743</span>
-                                    </div>
-                                    <div className="flex items-center space-x-1">
-                                      <Heart className="w-4 h-4"/>
-                                      <span>52</span>
-                                    </div>
-                                  </div>
-                                
-                                </div>
-                                <div className="flex items-center justify-between">
-                                    <div className="flex flex-wrap gap-3 w-100">
-                                      <span className="bg-gray-100 text-gray-600 px-2 py-1 rounded text-xs">Artificial Intelligence</span>
-                                      <span className="bg-gray-100 text-gray-600 px-2 py-1 rounded text-xs">Machine Learning</span>
-                                      <span className="bg-gray-100 text-gray-600 px-2 py-1 rounded text-xs">Career Opportunities</span>
-                                    </div>
-                                    <button className="inline-flex items-center justify-center gap-2 whitespace-nowrap font-medium transition-color focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-event-none disabled:opacity-50 pointer-events-none border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground h-8 rounded-md px-3 text-xs">Read More</button>
-                                  </div>
-                            </div>
-                        </div>
-                        </article>
+export default async function Blog() {
+  return (
+    <div className="overflow-x-hidden w-full">
+      <Navbar />
 
-                        <article className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 hover:shadow-lg transition-all duration-300">
-                            <div className="grid md:grid-cols-3 gap-6">
-                            <div className="md:col-span-1">
-                                <Image
-                                src="/pho5.jpg" 
-                                  width={0}        
-                                  height={0}       
-                                alt="Picture of the author"
-                                className=" object-cover w-full h-60"
-                                />
-                            </div>
-                            <div className="md:col-span-2 ">
-                                <div className="flex items-center space-x-2 mb-3 ">
-                                    <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs font-medium">UI/UX Design</span>
-                                    <div className="flex items-center space-x-1 text-xs text-gray-500"></div>
-                                </div>
-                                <h3 className="text-xl font-bold text-gray-900 mb-3 line-clamp-2">UI/UX Design Trends Shaping African Digital Products</h3>
-                                <p className="text-gray-600 mb-4 line-clamp-3 leading-relaxed">Learn about the latest design trends that are influencing user experience across African digital platforms and mobile apps.</p>
-                                <div className="flex items-center justify-between mb-4">
+      <section className="pt-24 sm:pt-28 pb-16 bg-gray-100 w-full">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-                                  <div className="flex items-center space-x-4 text-sm text-gray-500">
+          {/* ── Header ── */}
+          <div className="text-center mb-10">
+            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-3">
+              Tech Insights & Industry News
+            </h1>
+            <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
+              Stay ahead in your tech career with expert insights, industry trends, and success
+              stories from the Nigerian tech ecosystem.
+            </p>
+          </div>
 
-                                    <div className="flex items-center space-x-1">
-                                      <Users className="w-4 h-4"/>
-                                      <span className="w-30">Grace Okoro</span>
-                                    </div>
-                                    <div className="flex items-center space-x-1">
-                                      <Calendar className="w-4 h-4"/>
-                                      <span className="w-20">12/8/2024</span>
-                                    </div>
-                                  </div>
-                                  <div className="flex items-center space-x-4 text-sm text-gray-500">
+          {/* ── Main 2-column layout ── */}
+          <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
 
-                                    <div className="flex items-center space-x-1">
-                                      <Eye className="w-4 h-4"/>
-                                      <span>634</span>
-                                    </div>
-                                    <div className="flex items-center space-x-1">
-                                      <Heart className="w-4 h-4"/>
-                                      <span>52</span>
-                                    </div>
-                                  </div>
-                                
-                                </div>
-                                <div className="flex items-center justify-between">
-                                    <div className="flex flex-wrap gap-3 w-100">
-                                      <span className="bg-gray-100 text-gray-600 px-2 py-1 rounded text-xs">Artificial Intelligence</span>
-                                      <span className="bg-gray-100 text-gray-600 px-2 py-1 rounded text-xs">Machine Learning</span>
-                                      <span className="bg-gray-100 text-gray-600 px-2 py-1 rounded text-xs">Career Opportunities</span>
-                                    </div>
-                                    <button className="inline-flex items-center justify-center gap-2 whitespace-nowrap font-medium transition-color focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-event-none disabled:opacity-50 pointer-events-none border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground h-8 rounded-md px-3 text-xs">Read More</button>
-                                  </div>
-                            </div>
-                        </div>
-                        </article>
-                            
-                        <article className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 hover:shadow-lg transition-all duration-300">
-                            <div className="grid md:grid-cols-3 gap-6">
-                            <div className="md:col-span-1">
-                                <Image
-                                src="/pho5.jpg" 
-                                  width={0}        
-                                  height={0}       
-                                alt="Picture of the author"
-                                className=" object-cover w-full h-60"
-                                />
-                            </div>
-                            <div className="md:col-span-2 ">
-                                <div className="flex items-center space-x-2 mb-3 ">
-                                    <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs font-medium">Digital Marketing</span>
-                                    <div className="flex items-center space-x-1 text-xs text-gray-500"></div>
-                                </div>
-                                <h3 className="text-xl font-bold text-gray-900 mb-3 line-clamp-2">Digital Marketing Strategies for Nigerian Startups</h3>
-                                <p className="text-gray-600 mb-4 line-clamp-3 leading-relaxed">Effective digital marketing tactics that Nigerian startups are using to scale their businesses and reach global audiences.</p>
-                                <div className="flex items-center justify-between mb-4">
+            {/* ── LEFT: Main content (3 cols wide on lg) ── */}
+            <div className="lg:col-span-3 space-y-10">
 
-                                  <div className="flex items-center space-x-4 text-sm text-gray-500">
-
-                                    <div className="flex items-center space-x-1">
-                                      <Users className="w-4 h-4"/>
-                                      <span className="w-30">Olumide Adeyemi</span>
-                                    </div>
-                                    <div className="flex items-center space-x-1">
-                                      <Calendar className="w-4 h-4"/>
-                                      <span className="w-20">12/8/2024</span>
-                                    </div>
-                                  </div>
-                                  <div className="flex items-center space-x-4 text-sm text-gray-500">
-
-                                    <div className="flex items-center space-x-1">
-                                      <Eye className="w-4 h-4"/>
-                                      <span>521</span>
-                                    </div>
-                                    <div className="flex items-center space-x-1">
-                                      <Heart className="w-4 h-4"/>
-                                      <span>52</span>
-                                    </div>
-                                  </div>
-                                
-                                </div>
-                                <div className="flex items-center justify-between">
-                                    <div className="flex flex-wrap gap-3 w-100">
-                                      <span className="bg-gray-100 text-gray-600 px-2 py-1 rounded text-xs">Artificial Intelligence</span>
-                                      <span className="bg-gray-100 text-gray-600 px-2 py-1 rounded text-xs">Machine Learning</span>
-                                      <span className="bg-gray-100 text-gray-600 px-2 py-1 rounded text-xs">Career Opportunities</span>
-                                    </div>
-                                    <button className="inline-flex items-center justify-center gap-2 whitespace-nowrap font-medium transition-color focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-event-none disabled:opacity-50 pointer-events-none border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground h-8 rounded-md px-3 text-xs">Read More</button>
-                                  </div>
-                            </div>
-                        </div>
-                        </article>
-                    </div>
-                  </div>
-                </div>
-                  </div>
-                </div>
-
-            <div className="">
-            <div className="lg:col-span-1">
-              <div className="space-y-6  ">
-                <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 absolute left-270 w-80 bottom-55">
-                  <h3 className="text-lg font-bold text-gray-900 mb-4">Search Articles</h3>
-                  <div className="relative ">
-                    <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400"/>
-                    <input type="text" placeholder="Search blog posts" className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" />
-                  </div>
-                </div>
-                <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 absolute left-270 w-80  top-125">
-                  <h3 className="text-lg font-bold text-gray-900 mb-4">Categories</h3>
-                  <div className="space-y-2">
-                    <a href="/Blog?category=data-analytics" className="flex items-center justify-between p-2 rounded-lg hover:bg-gray-50 transition-colors">
-                      <span className="text-gray-700 hover:text-blue-800">Data Analytics</span>
-                      <span className="px-2 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800">12</span>
-                    </a>
-
-                    <a href="/Blog?category=data-analytics" className="flex items-center justify-between p-2 rounded-lg hover:bg-gray-50 transition-colors">
-                      <span className="text-gray-700 hover:text-blue-800">Software Engineering</span>
-                      <span className="px-2 py-1 rounded-full text-xs font-medium bg-green-100 text-green-600">8</span>
-                    </a>
-
-                    <a href="/Blog?category=data-analytics" className="flex items-center justify-between p-2 rounded-lg hover:bg-gray-50 transition-colors">
-                      <span className="text-gray-700 hover:text-blue-800">Cybersecurity</span>
-                      <span className="px-2 py-1 rounded-full text-xs font-medium bg-red-100 text-red-600">6</span>
-                    </a>
-
-                    <a href="/Blog?category=data-analytics" className="flex items-center justify-between p-2 rounded-lg hover:bg-gray-50 transition-colors">
-                      <span className="text-gray-700 hover:text-blue-800">Ai Engineering</span>
-                      <span className="px-2 py-1 rounded-full text-xs font-medium bg-purple-100 text-purple-600">6</span>
-                    </a>
-
-                    <a href="/Blog?category=data-analytics" className="flex items-center justify-between p-2 rounded-lg hover:bg-gray-50 transition-colors">
-                      <span className="text-gray-700 hover:text-blue-800">UI/UX Design</span>
-                      <span className="px-2 py-1 rounded-full text-xs font-medium bg-red-100 text-red-600">7</span>
-                    </a>
-
-                    <a href="/Blog?category=data-analytics" className="flex items-center justify-between p-2 rounded-lg hover:bg-gray-50 transition-colors">
-                      <span className="text-gray-700 hover:text-blue-800">Digital Marketing</span>
-                      <span className="px-2 py-1 rounded-full text-xs font-medium bg-red-100 text-red-600">4</span>
-                    </a>
-                  </div>
-                </div>
-                <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 absolute left-270 w-80  top-225">
-                  <h3 className="text-lg font-bold text-gray-900 mb-4">Recent Posts</h3>
-                  <div className="space-y-4">
-                    <a href="/Blog/future-data-analytics-nigeria-financial-sector">
-                      <div className="group cursor-pointer">
-                        <h4 className="text-sm font-medium text-gray-900 group-hover:text-blue-800 line-clamp-2 mb-2">The Future of Data Analytics in Nigeria's Financial Sector</h4>
-                        <div className="flex items-center space-x-2 text-xs text-gray-500">
-                          <Calendar className="w-3 h-3"/>
-                          <span>12/15/2024</span>
-                          <span>•</span>
-                          <span>Data Analytics</span>
-                        </div>
-                      </div>
-                    </a>
-                      <a href="/Blog/future-data-analytics-nigeria-financial-sector">
-                      <div className="group cursor-pointer">
-                        <h4 className="text-sm font-medium text-gray-900 group-hover:text-blue-800 line-clamp-2 mb-2">10 Essential Cybersecurity Skills Every Nigerian Business Needs</h4>
-                        <div className="flex items-center space-x-2 text-xs text-gray-500">
-                          <Calendar className="w-3 h-3"/>
-                          <span>12/12/2024</span>
-                          <span>•</span>
-                          <span>Cybersecurity</span>
-                        </div>
-                      </div>
-                    </a>
-                    <a href="/Blog/future-data-analytics-nigeria-financial-sector">
-                      <div className="group cursor-pointer">
-                        <h4 className="text-sm font-medium text-gray-900 group-hover:text-blue-800 line-clamp-2 mb-2">From Lagos to Silicon Valley: Success Stories</h4>
-                        <div className="flex items-center space-x-2 text-xs text-gray-500">
-                          <Calendar className="w-3 h-3"/>
-                          <span>12/10/2024</span>
-                          <span>•</span>
-                          <span>AI Engineering</span>
-                        </div>
-                      </div>
-                    </a>
-                    <a href="/Blog/future-data-analytics-nigeria-financial-sector">
-                      <div className="group cursor-pointer">
-                        <h4 className="text-sm font-medium text-gray-900 group-hover:text-blue-800 line-clamp-2 mb-2">AI and Machine Learning: Opportunities in Nigeria</h4>
-                        <div className="flex items-center space-x-2 text-xs text-gray-500">
-                          <Calendar className="w-3 h-3"/>
-                          <span>12/15/2024</span>
-                          <span>•</span>
-                          <span>Software Engineering</span>
-                        </div>
-                      </div>
-                    </a>
+              {/* Category Filter */}
+              <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-5">
+                <h2 className="text-base font-bold text-gray-900 mb-3">Browse by Category</h2>
+                <div className="flex flex-wrap gap-2">
+                  {["All Posts", "Data Analytics", "Software Engineering", "Cybersecurity", "AI Engineering", "UI/UX Design", "Digital Marketing"].map((cat, i) => (
+                    <button
+                      key={cat}
+                      className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${i === 0 ? "bg-blue-800 text-white" : "bg-gray-100 text-gray-700 hover:bg-gray-200"}`}
+                    >
+                      {cat}
+                    </button>
+                  ))}
                 </div>
               </div>
-                <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 absolute left-270 w-80  top-320">
-                  <h3 className="text-lg font-bold text-gray-900 mb-4">Popular Tags</h3>
-                  <div className="flex flex-wrap gap-2">
-                    <a href="#" className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-xs font-medium hover:bg-blue-100 hover:text-blue-800 transition-colors">Career Advice</a>
-                    <a href="#" className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-xs font-medium hover:bg-blue-100 hover:text-blue-800 transition-colors">Tech Trends</a>
-                    <a href="#" className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-xs font-medium hover:bg-blue-100 hover:text-blue-800 transition-colors">Nigeria Tech</a>
-                    <a href="#" className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-xs font-medium hover:bg-blue-100 hover:text-blue-800 transition-colors">Job Market</a>
-                    <a href="#" className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-xs font-medium hover:bg-blue-100 hover:text-blue-800 transition-colors">Skills Development</a>
-                    <a href="#" className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-xs font-medium hover:bg-blue-100 hover:text-blue-800 transition-colors">Industry Insights</a>
-                    <a href="#" className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-xs font-medium hover:bg-blue-100 hover:text-blue-800 transition-colors">Success Stories</a>
-                    <a href="#" className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-xs font-medium hover:bg-blue-100 hover:text-blue-800 transition-colors">Learning Tips</a>
-                    <a href="#" className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-xs font-medium hover:bg-blue-100 hover:text-blue-800 transition-colors">Tech News</a>
-                    <a href="#" className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-xs font-medium hover:bg-blue-100 hover:text-blue-800 transition-colors">Certification</a>
-                  </div>
-                </div>
-                <div className="bg-gradient-to-r from-blue-800 to-blue-600 text-white rounded-xl shadow-sm border border-gray-200 p-6 absolute left-270 w-80  top-390">
-                  <h3 className="text-lg font-bold mb-2">Stay Updated</h3>
-                  <p className="text-blue-100 text-sm mb-4">Get the latest tech insights and career advice delivered to your inbox.</p>
-                  <div className="space-y-3">
-                    <input type="email" placeholder="Enter your email" className="w-full px-3 py-2 rounded-lg text-gray-900 focus:ring-blue-300 bg-white"/>
-                    <button className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 shrink-0 shadow h-9 px-4 py-2 w-full bg-white text-blue-800 hover:bg-blue-50">Subscribe</button>
-                  </div>
-                </div>
-                <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 absolute left-270 w-80  top-455">
-                  <h3 className="text-lg font-bold text-gray-900 mb-4">Featured Courses</h3>
-                  <div className="space-y-4">
-                    <a href="#">
-                      <div className="groud p-3 border border-gray-200 rounded-lg hover:border-blue-300 hover:bg-blue-50 transition-all">
-                        <div className="flex items-center justify-between mb-2">
-                          <h4 className="font-medium text-gray-900 group-hover:text-blue-800">Data Analytics</h4>
-                          <ArrowRight className="w-4 h-4 text-gray-400 group-hover:text-blue-600"/>
+
+              {/* Featured Articles */}
+              <div>
+                <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-5">Featured Articles</h2>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+                  {featuredArticles.map((a, i) => (
+                    <article key={i} className="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+                      <div className="relative">
+                        <Image src={a.img} width={400} height={192} alt={a.title} className="w-full h-44 object-cover" />
+                        <span className="absolute top-3 left-3 bg-blue-800 text-white px-3 py-1 rounded-full text-xs font-medium">{a.tag}</span>
+                      </div>
+                      <div className="p-5">
+                        <h3 className="text-base font-bold text-gray-900 mb-2 line-clamp-2">{a.title}</h3>
+                        <p className="text-gray-500 text-sm mb-3 line-clamp-2">{a.excerpt}</p>
+                        <div className="flex flex-wrap gap-3 text-xs text-gray-400 mb-3">
+                          <span className="flex items-center gap-1"><Users className="w-3 h-3" />{a.author}</span>
+                          <span className="flex items-center gap-1"><Clock className="w-3 h-3" />{a.readTime}</span>
                         </div>
-                        <p className="text-sm text-gray-600 mb-1">Master data analysis and visualization 6 Months</p>
+                        <div className="flex items-center justify-between">
+                          <span className="flex items-center gap-1 text-xs text-gray-400">
+                            <Calendar className="w-3 h-3" />{a.date}
+                          </span>
+                          <button className="text-blue-800 hover:text-blue-600 text-xs font-semibold">Read More</button>
+                        </div>
+                      </div>
+                    </article>
+                  ))}
+                </div>
+              </div>
+
+              {/* Latest Articles */}
+              <div>
+                <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-5">Latest Articles</h2>
+                <div className="space-y-5">
+                  {latestArticles.map((a, i) => (
+                    <article key={i} className="bg-white rounded-xl shadow-sm border border-gray-200 p-5 hover:shadow-lg transition-all duration-300">
+                      <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
+                        {/* Image */}
+                        <div className="sm:col-span-1">
+                          <Image src={a.img} width={300} height={200} alt={a.title} className="w-full h-44 object-cover rounded-lg" />
+                        </div>
+                        {/* Content */}
+                        <div className="sm:col-span-2 flex flex-col justify-between">
+                          <div>
+                            <span className={`inline-block px-2 py-1 rounded-full text-xs font-medium mb-3 ${a.tagColor}`}>{a.tag}</span>
+                            <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-2 line-clamp-2">{a.title}</h3>
+                            <p className="text-gray-500 text-sm mb-3 line-clamp-2">{a.excerpt}</p>
+                          </div>
+                          <div>
+                            <div className="flex flex-wrap items-center justify-between gap-3 text-xs text-gray-400 mb-3">
+                              <div className="flex items-center gap-3">
+                                <span className="flex items-center gap-1"><Users className="w-3 h-3" />{a.author}</span>
+                                <span className="flex items-center gap-1"><Calendar className="w-3 h-3" />{a.date}</span>
+                              </div>
+                              <div className="flex items-center gap-3">
+                                <span className="flex items-center gap-1"><Eye className="w-3 h-3" />{a.views}</span>
+                                <span className="flex items-center gap-1"><Heart className="w-3 h-3" />{a.likes}</span>
+                              </div>
+                            </div>
+                            <div className="flex flex-wrap items-center justify-between gap-3">
+                              <div className="flex flex-wrap gap-2">
+                                {a.tags.map((tag) => (
+                                  <span key={tag} className="bg-gray-100 text-gray-600 px-2 py-1 rounded text-xs">{tag}</span>
+                                ))}
+                              </div>
+                              <button className="text-xs font-medium border border-gray-200 rounded-md px-3 py-1.5 hover:bg-gray-50 transition-colors shrink-0">
+                                Read More
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </article>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* ── RIGHT: Sidebar (1 col wide on lg) ── */}
+            <aside className="lg:col-span-1 space-y-6">
+
+              {/* Search */}
+              <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-5">
+                <h3 className="text-base font-bold text-gray-900 mb-3">Search Articles</h3>
+                <div className="relative">
+                  <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+                  <input
+                    type="text"
+                    placeholder="Search blog posts"
+                    className="w-full pl-9 pr-4 py-2 border border-gray-200 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
+                  />
+                </div>
+              </div>
+
+              {/* Categories */}
+              <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-5">
+                <h3 className="text-base font-bold text-gray-900 mb-3">Categories</h3>
+                <div className="space-y-1">
+                  {categories.map((c) => (
+                    <a key={c.label} href="#" className="flex items-center justify-between p-2 rounded-lg hover:bg-gray-50 transition-colors">
+                      <span className="text-sm text-gray-700 hover:text-blue-800">{c.label}</span>
+                      <span className={`px-2 py-0.5 rounded-full text-xs font-medium ${c.color}`}>{c.count}</span>
+                    </a>
+                  ))}
+                </div>
+              </div>
+
+              {/* Recent Posts */}
+              <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-5">
+                <h3 className="text-base font-bold text-gray-900 mb-3">Recent Posts</h3>
+                <div className="space-y-4">
+                  {recentPosts.map((p, i) => (
+                    <a key={i} href="#" className="group block">
+                      <h4 className="text-sm font-medium text-gray-900 group-hover:text-blue-800 line-clamp-2 mb-1">{p.title}</h4>
+                      <div className="flex items-center gap-2 text-xs text-gray-400">
+                        <Calendar className="w-3 h-3" /><span>{p.date}</span>
+                        <span>•</span><span>{p.cat}</span>
                       </div>
                     </a>
-                    <a href="#">
-                      <div className="groud p-3 border border-gray-200 rounded-lg hover:border-blue-300 hover:bg-blue-50 transition-all">
-                        <div className="flex items-center justify-between mb-2">
-                          <h4 className="font-medium text-gray-900 group-hover:text-blue-800">Software Engineering</h4>
-                          <ArrowRight className="w-4 h-4 text-gray-400 group-hover:text-blue-600"/>
-                        </div>
-                        <p className="text-sm text-gray-600 mb-1">Build robust applications 12 Months</p>
-                      </div>
-                    </a>
-                    <a href="#">
-                      <div className="groud p-3 border border-gray-200 rounded-lg hover:border-blue-300 hover:bg-blue-50 transition-all">
-                        <div className="flex items-center justify-between mb-2">
-                          <h4 className="font-medium text-gray-900 group-hover:text-blue-800">Cybersecurity</h4>
-                          <ArrowRight className="w-4 h-4 text-gray-400 group-hover:text-blue-600"/>
-                        </div>
-                        <p className="text-sm text-gray-600 mb-1">Protect digital assets 8 Months</p>
-                      </div>
-                    </a>
-                  </div>
+                  ))}
                 </div>
-                <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 absolute left-270 w-80  top-555">
-                  <h3 className="text-lg font-bold text-gray-900 mb-4">Follow Us</h3>
-                  <div className="grid grid-cols-2 gap-3">
-                    <a href="#" className="flex items-center justify-center p-3 bg-blue-50 text-blue-800 rounded-lg hover:bg-blue-100 transition-colors">
-                      <span className="text-sm font-medium">Facebook</span>
+              </div>
+
+              {/* Popular Tags */}
+              <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-5">
+                <h3 className="text-base font-bold text-gray-900 mb-3">Popular Tags</h3>
+                <div className="flex flex-wrap gap-2">
+                  {tags.map((tag) => (
+                    <a key={tag} href="#" className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-xs font-medium hover:bg-blue-100 hover:text-blue-800 transition-colors">
+                      {tag}
                     </a>
-            
-                      <a href="#" className="flex items-center justify-center p-3 bg-blue-50 text-blue-800 rounded-lg hover:bg-blue-100 transition-colors">
-                      <span className="text-sm font-medium">Twitter</span>
-                    </a>
-                    
-                    
-                      <a href="#" className="flex items-center justify-center p-3 bg-blue-50 text-blue-800 rounded-lg hover:bg-blue-100 transition-colors">
-                      <span className="text-sm font-medium">LinkedIn</span>
-                    </a>
-                    
-                    
-                      <a href="#" className="flex items-center justify-center p-3 bg-red-50 text-red-800 rounded-lg hover:bg-blue-100 transition-colors">
-                      <span className="text-sm font-medium">Instagram</span>
-                    </a>
-                    
-                  </div>
+                  ))}
                 </div>
-            </div>
-            </div>
-            </div>
-            </div>
-            </div>
-            </div>
-            </div>
-            </div>
-            <div className="mt-100">
-              <Footer/>
-            </div>
-        </section>
-       </div>
-    )
-    }
+              </div>
+
+              {/* Newsletter */}
+              <div className="bg-gradient-to-br from-blue-800 to-blue-600 text-white rounded-xl p-5">
+                <h3 className="text-base font-bold mb-2">Stay Updated</h3>
+                <p className="text-blue-100 text-sm mb-4">Get the latest tech insights and career advice delivered to your inbox.</p>
+                <div className="space-y-3">
+                  <input
+                    type="email"
+                    placeholder="Enter your email"
+                    className="w-full px-3 py-2 rounded-lg text-gray-900 text-sm focus:outline-none focus:ring-2 focus:ring-blue-300"
+                  />
+                  <button className="w-full py-2 bg-white text-blue-800 rounded-lg text-sm font-semibold hover:bg-blue-50 transition-colors">
+                    Subscribe
+                  </button>
+                </div>
+              </div>
+
+              {/* Featured Courses */}
+              <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-5">
+                <h3 className="text-base font-bold text-gray-900 mb-3">Featured Courses</h3>
+                <div className="space-y-3">
+                  {featuredCourses.map((c) => (
+                    <a key={c.title} href="#" className="group block p-3 border border-gray-200 rounded-lg hover:border-blue-300 hover:bg-blue-50 transition-all">
+                      <div className="flex items-center justify-between mb-1">
+                        <h4 className="text-sm font-medium text-gray-900 group-hover:text-blue-800">{c.title}</h4>
+                        <ArrowRight className="w-4 h-4 text-gray-400 group-hover:text-blue-600 shrink-0" />
+                      </div>
+                      <p className="text-xs text-gray-500">{c.desc} • {c.duration}</p>
+                    </a>
+                  ))}
+                </div>
+              </div>
+
+              {/* Follow Us */}
+              <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-5">
+                <h3 className="text-base font-bold text-gray-900 mb-3">Follow Us</h3>
+                <div className="grid grid-cols-2 gap-3">
+                  {[
+                    { label: "Facebook", bg: "bg-blue-50 text-blue-800 hover:bg-blue-100" },
+                    { label: "Twitter", bg: "bg-sky-50 text-sky-800 hover:bg-sky-100" },
+                    { label: "LinkedIn", bg: "bg-blue-50 text-blue-800 hover:bg-blue-100" },
+                    { label: "Instagram", bg: "bg-red-50 text-red-800 hover:bg-red-100" },
+                  ].map((s) => (
+                    <a key={s.label} href="#" className={`flex items-center justify-center p-3 rounded-lg text-sm font-medium transition-colors ${s.bg}`}>
+                      {s.label}
+                    </a>
+                  ))}
+                </div>
+              </div>
+            </aside>
+          </div>
+        </div>
+
+        <div className="mt-16">
+          <Footer />
+        </div>
+      </section>
+    </div>
+  );
+}

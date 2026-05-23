@@ -1,5 +1,5 @@
 'use client';
-import React from "react";
+import React, { useState } from "react";
 import {
   Database, Users, MapPin, Code, Brain, Laptop, Shield,
   Palette, Cloud, Package, Video, Megaphone, Wifi, Bitcoin,
@@ -10,7 +10,6 @@ import Navbar from "../component/NavBar";
 import Link from "next/link";
 import Footer from "../component/Footer";
 
-// LucideProps is exported by lucide-react and already includes className, size, color etc.
 type LucideIcon = React.FC<LucideProps>;
 
 interface IconData {
@@ -45,7 +44,7 @@ const coursesData: CourseItem[] = [
     level: "Beginner to Advanced", duration: "6 Months", duration1: "6 Months", duration2: "120 Hours",
     buttons: ["Learn More", "Enroll Now"],
     icons: [
-      { icon: Laptop, color: "text-yellow-800", bgColor: "bg-yellow-100", size: "w-15 h-15", wrapperSize: "w-15 h-15" },
+      { icon: Laptop, color: "text-yellow-800", bgColor: "bg-yellow-100", size: "w-7 h-7", wrapperSize: "w-12 h-12" },
       { icon: Video,  color: "text-green-600",  bgColor: "bg-green-100",  size: "w-5 h-5",  wrapperSize: "w-8 h-8" },
       { icon: Users,  color: "text-purple-600", bgColor: "bg-purple-100", size: "w-5 h-5",  wrapperSize: "w-8 h-8" },
       { icon: MapPin, color: "text-yellow-600", bgColor: "bg-yellow-100", size: "w-5 h-5",  wrapperSize: "w-8 h-8" },
@@ -59,10 +58,10 @@ const coursesData: CourseItem[] = [
     level: "Advanced", duration: "8 Months", duration1: "8 Months", duration2: "140 Hours",
     buttons: ["Learn More", "Enroll Now"],
     icons: [
-      { icon: Database, color: "text-blue-600",   bgColor: "bg-blue-100",   wrapperSize: "w-15 h-15" },
-      { icon: Video,    color: "text-green-600",  bgColor: "bg-green-100",  wrapperSize: "w-8 h-8" },
-      { icon: Users,    color: "text-purple-600", bgColor: "bg-purple-100", wrapperSize: "w-8 h-8" },
-      { icon: MapPin,   color: "text-yellow-600", bgColor: "bg-yellow-100", wrapperSize: "w-8 h-8" },
+      { icon: Database, color: "text-blue-600",   bgColor: "bg-blue-100",   size: "w-7 h-7", wrapperSize: "w-12 h-12" },
+      { icon: Video,    color: "text-green-600",  bgColor: "bg-green-100",  size: "w-5 h-5", wrapperSize: "w-8 h-8" },
+      { icon: Users,    color: "text-purple-600", bgColor: "bg-purple-100", size: "w-5 h-5", wrapperSize: "w-8 h-8" },
+      { icon: MapPin,   color: "text-yellow-600", bgColor: "bg-yellow-100", size: "w-5 h-5", wrapperSize: "w-8 h-8" },
     ],
     borderColor: "border-blue-200",
   },
@@ -73,10 +72,10 @@ const coursesData: CourseItem[] = [
     level: "Beginner to Intermediate", duration: "6 Months", duration1: "6 Months", duration2: "120 Hours",
     buttons: ["Learn More", "Enroll Now"],
     icons: [
-      { icon: Brain,  color: "text-purple-800", bgColor: "bg-purple-100", wrapperSize: "w-15 h-15" },
-      { icon: Video,  color: "text-green-600",  bgColor: "bg-green-100",  wrapperSize: "w-8 h-8" },
-      { icon: Users,  color: "text-purple-600", bgColor: "bg-purple-100", wrapperSize: "w-8 h-8" },
-      { icon: MapPin, color: "text-yellow-600", bgColor: "bg-yellow-100", wrapperSize: "w-8 h-8" },
+      { icon: Brain,  color: "text-purple-800", bgColor: "bg-purple-100", size: "w-7 h-7", wrapperSize: "w-12 h-12" },
+      { icon: Video,  color: "text-green-600",  bgColor: "bg-green-100",  size: "w-5 h-5", wrapperSize: "w-8 h-8" },
+      { icon: Users,  color: "text-purple-600", bgColor: "bg-purple-100", size: "w-5 h-5", wrapperSize: "w-8 h-8" },
+      { icon: MapPin, color: "text-yellow-600", bgColor: "bg-yellow-100", size: "w-5 h-5", wrapperSize: "w-8 h-8" },
     ],
     borderColor: "border-purple-300",
   },
@@ -87,10 +86,10 @@ const coursesData: CourseItem[] = [
     level: "Beginner to Advanced", duration: "5 Months", duration1: "5 Months", duration2: "100 Hours",
     buttons: ["Learn More", "Enroll Now"],
     icons: [
-      { icon: Shield, color: "text-red-800",    bgColor: "bg-red-100",    wrapperSize: "w-15 h-15" },
-      { icon: Video,  color: "text-green-600",  bgColor: "bg-green-100",  wrapperSize: "w-8 h-8" },
-      { icon: Users,  color: "text-purple-600", bgColor: "bg-purple-100", wrapperSize: "w-8 h-8" },
-      { icon: MapPin, color: "text-yellow-600", bgColor: "bg-yellow-100", wrapperSize: "w-8 h-8" },
+      { icon: Shield, color: "text-red-800",    bgColor: "bg-red-100",    size: "w-7 h-7", wrapperSize: "w-12 h-12" },
+      { icon: Video,  color: "text-green-600",  bgColor: "bg-green-100",  size: "w-5 h-5", wrapperSize: "w-8 h-8" },
+      { icon: Users,  color: "text-purple-600", bgColor: "bg-purple-100", size: "w-5 h-5", wrapperSize: "w-8 h-8" },
+      { icon: MapPin, color: "text-yellow-600", bgColor: "bg-yellow-100", size: "w-5 h-5", wrapperSize: "w-8 h-8" },
     ],
     borderColor: "border-red-200",
   },
@@ -101,10 +100,10 @@ const coursesData: CourseItem[] = [
     level: "Beginner", duration: "6 Months", duration1: "6 Months", duration2: "120 Hours",
     buttons: ["Learn More", "Enroll Now"],
     icons: [
-      { icon: Brain,  color: "text-purple-800", bgColor: "bg-purple-100", wrapperSize: "w-15 h-15" },
-      { icon: Video,  color: "text-green-600",  bgColor: "bg-green-100",  wrapperSize: "w-8 h-8" },
-      { icon: Users,  color: "text-purple-600", bgColor: "bg-purple-100", wrapperSize: "w-8 h-8" },
-      { icon: MapPin, color: "text-yellow-600", bgColor: "bg-yellow-100", wrapperSize: "w-8 h-8" },
+      { icon: Brain,  color: "text-purple-800", bgColor: "bg-purple-100", size: "w-7 h-7", wrapperSize: "w-12 h-12" },
+      { icon: Video,  color: "text-green-600",  bgColor: "bg-green-100",  size: "w-5 h-5", wrapperSize: "w-8 h-8" },
+      { icon: Users,  color: "text-purple-600", bgColor: "bg-purple-100", size: "w-5 h-5", wrapperSize: "w-8 h-8" },
+      { icon: MapPin, color: "text-yellow-600", bgColor: "bg-yellow-100", size: "w-5 h-5", wrapperSize: "w-8 h-8" },
     ],
     borderColor: "border-purple-300",
   },
@@ -115,10 +114,10 @@ const coursesData: CourseItem[] = [
     level: "Intermediate", duration: "4 Months", duration1: "4 Months", duration2: "80 Hours",
     buttons: ["Learn More", "Enroll Now"],
     icons: [
-      { icon: Palette, color: "text-pink-800",   bgColor: "bg-pink-100",   wrapperSize: "w-15 h-15" },
-      { icon: Video,   color: "text-green-600",  bgColor: "bg-green-100",  wrapperSize: "w-8 h-8" },
-      { icon: Users,   color: "text-purple-600", bgColor: "bg-purple-100", wrapperSize: "w-8 h-8" },
-      { icon: MapPin,  color: "text-yellow-600", bgColor: "bg-yellow-100", wrapperSize: "w-8 h-8" },
+      { icon: Palette, color: "text-pink-800",   bgColor: "bg-pink-100",   size: "w-7 h-7", wrapperSize: "w-12 h-12" },
+      { icon: Video,   color: "text-green-600",  bgColor: "bg-green-100",  size: "w-5 h-5", wrapperSize: "w-8 h-8" },
+      { icon: Users,   color: "text-purple-600", bgColor: "bg-purple-100", size: "w-5 h-5", wrapperSize: "w-8 h-8" },
+      { icon: MapPin,  color: "text-yellow-600", bgColor: "bg-yellow-100", size: "w-5 h-5", wrapperSize: "w-8 h-8" },
     ],
     borderColor: "border-pink-200",
   },
@@ -129,10 +128,10 @@ const coursesData: CourseItem[] = [
     level: "Intermediate", duration: "4 Months", duration1: "4 Months", duration2: "80 Hours",
     buttons: ["Learn More", "Enroll Now"],
     icons: [
-      { icon: Palette, color: "text-cyan-800",   bgColor: "bg-cyan-100",   wrapperSize: "w-15 h-15" },
-      { icon: Video,   color: "text-green-600",  bgColor: "bg-green-100",  wrapperSize: "w-8 h-8" },
-      { icon: Users,   color: "text-purple-600", bgColor: "bg-purple-100", wrapperSize: "w-8 h-8" },
-      { icon: MapPin,  color: "text-yellow-600", bgColor: "bg-yellow-100", wrapperSize: "w-8 h-8" },
+      { icon: Palette, color: "text-cyan-800",   bgColor: "bg-cyan-100",   size: "w-7 h-7", wrapperSize: "w-12 h-12" },
+      { icon: Video,   color: "text-green-600",  bgColor: "bg-green-100",  size: "w-5 h-5", wrapperSize: "w-8 h-8" },
+      { icon: Users,   color: "text-purple-600", bgColor: "bg-purple-100", size: "w-5 h-5", wrapperSize: "w-8 h-8" },
+      { icon: MapPin,  color: "text-yellow-600", bgColor: "bg-yellow-100", size: "w-5 h-5", wrapperSize: "w-8 h-8" },
     ],
     borderColor: "border-cyan-200",
   },
@@ -143,10 +142,10 @@ const coursesData: CourseItem[] = [
     level: "Intermediate", duration: "4 Months", duration1: "4 Months", duration2: "80 Hours",
     buttons: ["Learn More", "Enroll Now"],
     icons: [
-      { icon: Code,   color: "text-emerald-800", bgColor: "bg-emerald-100", wrapperSize: "w-15 h-15" },
-      { icon: Video,  color: "text-green-600",   bgColor: "bg-green-100",   wrapperSize: "w-8 h-8" },
-      { icon: Users,  color: "text-purple-600",  bgColor: "bg-purple-100",  wrapperSize: "w-8 h-8" },
-      { icon: MapPin, color: "text-yellow-600",  bgColor: "bg-yellow-100",  wrapperSize: "w-8 h-8" },
+      { icon: Code,   color: "text-emerald-800", bgColor: "bg-emerald-100", size: "w-7 h-7", wrapperSize: "w-12 h-12" },
+      { icon: Video,  color: "text-green-600",   bgColor: "bg-green-100",   size: "w-5 h-5", wrapperSize: "w-8 h-8" },
+      { icon: Users,  color: "text-purple-600",  bgColor: "bg-purple-100",  size: "w-5 h-5", wrapperSize: "w-8 h-8" },
+      { icon: MapPin, color: "text-yellow-600",  bgColor: "bg-yellow-100",  size: "w-5 h-5", wrapperSize: "w-8 h-8" },
     ],
     borderColor: "border-emerald-200",
   },
@@ -157,10 +156,10 @@ const coursesData: CourseItem[] = [
     level: "Intermediate", duration: "4 Months", duration1: "4 Months", duration2: "80 Hours",
     buttons: ["Learn More", "Enroll Now"],
     icons: [
-      { icon: Laptop, color: "text-violet-800", bgColor: "bg-violet-100", wrapperSize: "w-15 h-15" },
-      { icon: Video,  color: "text-green-600",  bgColor: "bg-green-100",  wrapperSize: "w-8 h-8" },
-      { icon: Users,  color: "text-purple-600", bgColor: "bg-purple-100", wrapperSize: "w-8 h-8" },
-      { icon: MapPin, color: "text-yellow-600", bgColor: "bg-yellow-100", wrapperSize: "w-8 h-8" },
+      { icon: Laptop, color: "text-violet-800", bgColor: "bg-violet-100", size: "w-7 h-7", wrapperSize: "w-12 h-12" },
+      { icon: Video,  color: "text-green-600",  bgColor: "bg-green-100",  size: "w-5 h-5", wrapperSize: "w-8 h-8" },
+      { icon: Users,  color: "text-purple-600", bgColor: "bg-purple-100", size: "w-5 h-5", wrapperSize: "w-8 h-8" },
+      { icon: MapPin, color: "text-yellow-600", bgColor: "bg-yellow-100", size: "w-5 h-5", wrapperSize: "w-8 h-8" },
     ],
     borderColor: "border-violet-300",
   },
@@ -171,10 +170,10 @@ const coursesData: CourseItem[] = [
     level: "Intermediate", duration: "4 Months", duration1: "4 Months", duration2: "80 Hours",
     buttons: ["Learn More", "Enroll Now"],
     icons: [
-      { icon: Database, color: "text-amber-800", bgColor: "bg-amber-100", wrapperSize: "w-15 h-15" },
-      { icon: Video,    color: "text-green-600", bgColor: "bg-green-100", wrapperSize: "w-8 h-8" },
-      { icon: Users,    color: "text-purple-600",bgColor: "bg-purple-100",wrapperSize: "w-8 h-8" },
-      { icon: MapPin,   color: "text-yellow-600",bgColor: "bg-yellow-100",wrapperSize: "w-8 h-8" },
+      { icon: Database, color: "text-amber-800", bgColor: "bg-amber-100", size: "w-7 h-7", wrapperSize: "w-12 h-12" },
+      { icon: Video,    color: "text-green-600", bgColor: "bg-green-100", size: "w-5 h-5", wrapperSize: "w-8 h-8" },
+      { icon: Users,    color: "text-purple-600",bgColor: "bg-purple-100",size: "w-5 h-5", wrapperSize: "w-8 h-8" },
+      { icon: MapPin,   color: "text-yellow-600",bgColor: "bg-yellow-100",size: "w-5 h-5", wrapperSize: "w-8 h-8" },
     ],
     borderColor: "border-amber-200",
   },
@@ -185,10 +184,10 @@ const coursesData: CourseItem[] = [
     level: "Intermediate", duration: "4 Months", duration1: "4 Months", duration2: "80 Hours",
     buttons: ["Learn More", "Enroll Now"],
     icons: [
-      { icon: Cloud,  color: "text-sky-600",    bgColor: "bg-sky-100",    wrapperSize: "w-15 h-15" },
-      { icon: Video,  color: "text-green-600",  bgColor: "bg-green-100",  wrapperSize: "w-8 h-8" },
-      { icon: Users,  color: "text-purple-600", bgColor: "bg-purple-100", wrapperSize: "w-8 h-8" },
-      { icon: MapPin, color: "text-yellow-600", bgColor: "bg-yellow-100", wrapperSize: "w-8 h-8" },
+      { icon: Cloud,  color: "text-sky-600",    bgColor: "bg-sky-100",    size: "w-7 h-7", wrapperSize: "w-12 h-12" },
+      { icon: Video,  color: "text-green-600",  bgColor: "bg-green-100",  size: "w-5 h-5", wrapperSize: "w-8 h-8" },
+      { icon: Users,  color: "text-purple-600", bgColor: "bg-purple-100", size: "w-5 h-5", wrapperSize: "w-8 h-8" },
+      { icon: MapPin, color: "text-yellow-600", bgColor: "bg-yellow-100", size: "w-5 h-5", wrapperSize: "w-8 h-8" },
     ],
     borderColor: "border-sky-200",
   },
@@ -199,10 +198,10 @@ const coursesData: CourseItem[] = [
     level: "Intermediate", duration: "4 Months", duration1: "4 Months", duration2: "80 Hours",
     buttons: ["Learn More", "Enroll Now"],
     icons: [
-      { icon: Code,   color: "text-green-800",  bgColor: "bg-green-100",  wrapperSize: "w-15 h-15" },
-      { icon: Video,  color: "text-green-600",  bgColor: "bg-green-100",  wrapperSize: "w-8 h-8" },
-      { icon: Users,  color: "text-purple-600", bgColor: "bg-purple-100", wrapperSize: "w-8 h-8" },
-      { icon: MapPin, color: "text-yellow-600", bgColor: "bg-yellow-100", wrapperSize: "w-8 h-8" },
+      { icon: Code,   color: "text-green-800",  bgColor: "bg-green-100",  size: "w-7 h-7", wrapperSize: "w-12 h-12" },
+      { icon: Video,  color: "text-green-600",  bgColor: "bg-green-100",  size: "w-5 h-5", wrapperSize: "w-8 h-8" },
+      { icon: Users,  color: "text-purple-600", bgColor: "bg-purple-100", size: "w-5 h-5", wrapperSize: "w-8 h-8" },
+      { icon: MapPin, color: "text-yellow-600", bgColor: "bg-yellow-100", size: "w-5 h-5", wrapperSize: "w-8 h-8" },
     ],
     borderColor: "border-green-200",
   },
@@ -213,10 +212,10 @@ const coursesData: CourseItem[] = [
     level: "Intermediate", duration: "4 Months", duration1: "4 Months", duration2: "80 Hours",
     buttons: ["Learn More", "Enroll Now"],
     icons: [
-      { icon: Package, color: "text-indigo-800", bgColor: "bg-indigo-100", wrapperSize: "w-15 h-15" },
-      { icon: Video,   color: "text-green-600",  bgColor: "bg-green-100",  wrapperSize: "w-8 h-8" },
-      { icon: Users,   color: "text-purple-600", bgColor: "bg-purple-100", wrapperSize: "w-8 h-8" },
-      { icon: MapPin,  color: "text-yellow-600", bgColor: "bg-yellow-100", wrapperSize: "w-8 h-8" },
+      { icon: Package, color: "text-indigo-800", bgColor: "bg-indigo-100", size: "w-7 h-7", wrapperSize: "w-12 h-12" },
+      { icon: Video,   color: "text-green-600",  bgColor: "bg-green-100",  size: "w-5 h-5", wrapperSize: "w-8 h-8" },
+      { icon: Users,   color: "text-purple-600", bgColor: "bg-purple-100", size: "w-5 h-5", wrapperSize: "w-8 h-8" },
+      { icon: MapPin,  color: "text-yellow-600", bgColor: "bg-yellow-100", size: "w-5 h-5", wrapperSize: "w-8 h-8" },
     ],
     borderColor: "border-indigo-200",
   },
@@ -227,10 +226,10 @@ const coursesData: CourseItem[] = [
     level: "Intermediate", duration: "4 Months", duration1: "4 Months", duration2: "80 Hours",
     buttons: ["Learn More", "Enroll Now"],
     icons: [
-      { icon: Video,  color: "text-amber-800", bgColor: "bg-amber-100", wrapperSize: "w-15 h-15" },
-      { icon: Video,  color: "text-green-600", bgColor: "bg-green-100", wrapperSize: "w-8 h-8" },
-      { icon: Users,  color: "text-purple-600",bgColor: "bg-purple-100",wrapperSize: "w-8 h-8" },
-      { icon: MapPin, color: "text-yellow-600",bgColor: "bg-yellow-100",wrapperSize: "w-8 h-8" },
+      { icon: Video,  color: "text-amber-800", bgColor: "bg-amber-100", size: "w-7 h-7", wrapperSize: "w-12 h-12" },
+      { icon: Video,  color: "text-green-600", bgColor: "bg-green-100", size: "w-5 h-5", wrapperSize: "w-8 h-8" },
+      { icon: Users,  color: "text-purple-600",bgColor: "bg-purple-100",size: "w-5 h-5", wrapperSize: "w-8 h-8" },
+      { icon: MapPin, color: "text-yellow-600",bgColor: "bg-yellow-100",size: "w-5 h-5", wrapperSize: "w-8 h-8" },
     ],
     borderColor: "border-amber-200",
   },
@@ -241,10 +240,10 @@ const coursesData: CourseItem[] = [
     level: "Intermediate", duration: "4 Months", duration1: "4 Months", duration2: "80 Hours",
     buttons: ["Learn More", "Enroll Now"],
     icons: [
-      { icon: Megaphone, color: "text-orange-800", bgColor: "bg-orange-100", wrapperSize: "w-15 h-15" },
-      { icon: Video,     color: "text-green-600",  bgColor: "bg-green-100",  wrapperSize: "w-8 h-8" },
-      { icon: Users,     color: "text-purple-600", bgColor: "bg-purple-100", wrapperSize: "w-8 h-8" },
-      { icon: MapPin,    color: "text-yellow-600", bgColor: "bg-yellow-100", wrapperSize: "w-8 h-8" },
+      { icon: Megaphone, color: "text-orange-800", bgColor: "bg-orange-100", size: "w-7 h-7", wrapperSize: "w-12 h-12" },
+      { icon: Video,     color: "text-green-600",  bgColor: "bg-green-100",  size: "w-5 h-5", wrapperSize: "w-8 h-8" },
+      { icon: Users,     color: "text-purple-600", bgColor: "bg-purple-100", size: "w-5 h-5", wrapperSize: "w-8 h-8" },
+      { icon: MapPin,    color: "text-yellow-600", bgColor: "bg-yellow-100", size: "w-5 h-5", wrapperSize: "w-8 h-8" },
     ],
     borderColor: "border-orange-200",
   },
@@ -255,10 +254,10 @@ const coursesData: CourseItem[] = [
     level: "Intermediate", duration: "4 Months", duration1: "4 Months", duration2: "80 Hours",
     buttons: ["Learn More", "Enroll Now"],
     icons: [
-      { icon: Wifi,   color: "text-cyan-800",   bgColor: "bg-cyan-100",   wrapperSize: "w-15 h-15" },
-      { icon: Video,  color: "text-green-600",  bgColor: "bg-green-100",  wrapperSize: "w-8 h-8" },
-      { icon: Users,  color: "text-purple-600", bgColor: "bg-purple-100", wrapperSize: "w-8 h-8" },
-      { icon: MapPin, color: "text-yellow-600", bgColor: "bg-yellow-100", wrapperSize: "w-8 h-8" },
+      { icon: Wifi,   color: "text-cyan-800",   bgColor: "bg-cyan-100",   size: "w-7 h-7", wrapperSize: "w-12 h-12" },
+      { icon: Video,  color: "text-green-600",  bgColor: "bg-green-100",  size: "w-5 h-5", wrapperSize: "w-8 h-8" },
+      { icon: Users,  color: "text-purple-600", bgColor: "bg-purple-100", size: "w-5 h-5", wrapperSize: "w-8 h-8" },
+      { icon: MapPin, color: "text-yellow-600", bgColor: "bg-yellow-100", size: "w-5 h-5", wrapperSize: "w-8 h-8" },
     ],
     borderColor: "border-cyan-200",
   },
@@ -269,10 +268,10 @@ const coursesData: CourseItem[] = [
     level: "Intermediate", duration: "4 Months", duration1: "4 Months", duration2: "80 Hours",
     buttons: ["Learn More", "Enroll Now"],
     icons: [
-      { icon: Bitcoin, color: "text-gray-800",   bgColor: "bg-gray-100",   wrapperSize: "w-15 h-15" },
-      { icon: Video,   color: "text-green-600",  bgColor: "bg-green-100",  wrapperSize: "w-8 h-8" },
-      { icon: Users,   color: "text-purple-600", bgColor: "bg-purple-100", wrapperSize: "w-8 h-8" },
-      { icon: MapPin,  color: "text-yellow-600", bgColor: "bg-yellow-100", wrapperSize: "w-8 h-8" },
+      { icon: Bitcoin, color: "text-gray-800",   bgColor: "bg-gray-100",   size: "w-7 h-7", wrapperSize: "w-12 h-12" },
+      { icon: Video,   color: "text-green-600",  bgColor: "bg-green-100",  size: "w-5 h-5", wrapperSize: "w-8 h-8" },
+      { icon: Users,   color: "text-purple-600", bgColor: "bg-purple-100", size: "w-5 h-5", wrapperSize: "w-8 h-8" },
+      { icon: MapPin,  color: "text-yellow-600", bgColor: "bg-yellow-100", size: "w-5 h-5", wrapperSize: "w-8 h-8" },
     ],
     borderColor: "border-gray-300",
   },
@@ -283,10 +282,10 @@ const coursesData: CourseItem[] = [
     level: "Intermediate", duration: "4 Months", duration1: "4 Months", duration2: "80 Hours",
     buttons: ["Learn More", "Enroll Now"],
     icons: [
-      { icon: Cog,    color: "text-orange-800", bgColor: "bg-orange-100", wrapperSize: "w-15 h-15" },
-      { icon: Video,  color: "text-green-600",  bgColor: "bg-green-100",  wrapperSize: "w-8 h-8" },
-      { icon: Users,  color: "text-purple-600", bgColor: "bg-purple-100", wrapperSize: "w-8 h-8" },
-      { icon: MapPin, color: "text-yellow-600", bgColor: "bg-yellow-100", wrapperSize: "w-8 h-8" },
+      { icon: Cog,    color: "text-orange-800", bgColor: "bg-orange-100", size: "w-7 h-7", wrapperSize: "w-12 h-12" },
+      { icon: Video,  color: "text-green-600",  bgColor: "bg-green-100",  size: "w-5 h-5", wrapperSize: "w-8 h-8" },
+      { icon: Users,  color: "text-purple-600", bgColor: "bg-purple-100", size: "w-5 h-5", wrapperSize: "w-8 h-8" },
+      { icon: MapPin, color: "text-yellow-600", bgColor: "bg-yellow-100", size: "w-5 h-5", wrapperSize: "w-8 h-8" },
     ],
     borderColor: "border-orange-200",
   },
@@ -297,10 +296,10 @@ const coursesData: CourseItem[] = [
     level: "Intermediate", duration: "4 Months", duration1: "4 Months", duration2: "80 Hours",
     buttons: ["Learn More", "Enroll Now"],
     icons: [
-      { icon: Lock,   color: "text-green-800",  bgColor: "bg-green-100",  wrapperSize: "w-15 h-15" },
-      { icon: Video,  color: "text-green-600",  bgColor: "bg-green-100",  wrapperSize: "w-8 h-8" },
-      { icon: Users,  color: "text-purple-600", bgColor: "bg-purple-100", wrapperSize: "w-8 h-8" },
-      { icon: MapPin, color: "text-yellow-600", bgColor: "bg-yellow-100", wrapperSize: "w-8 h-8" },
+      { icon: Lock,   color: "text-green-800",  bgColor: "bg-green-100",  size: "w-7 h-7", wrapperSize: "w-12 h-12" },
+      { icon: Video,  color: "text-green-600",  bgColor: "bg-green-100",  size: "w-5 h-5", wrapperSize: "w-8 h-8" },
+      { icon: Users,  color: "text-purple-600", bgColor: "bg-purple-100", size: "w-5 h-5", wrapperSize: "w-8 h-8" },
+      { icon: MapPin, color: "text-yellow-600", bgColor: "bg-yellow-100", size: "w-5 h-5", wrapperSize: "w-8 h-8" },
     ],
     borderColor: "border-green-200",
   },
@@ -311,127 +310,126 @@ const coursesData: CourseItem[] = [
     level: "Intermediate", duration: "4 Months", duration1: "4 Months", duration2: "80 Hours",
     buttons: ["Learn More", "Enroll Now"],
     icons: [
-      { icon: Film,   color: "text-violet-800", bgColor: "bg-violet-300", wrapperSize: "w-15 h-15" },
-      { icon: Video,  color: "text-green-600",  bgColor: "bg-green-100",  wrapperSize: "w-8 h-8" },
-      { icon: Users,  color: "text-purple-600", bgColor: "bg-purple-100", wrapperSize: "w-8 h-8" },
-      { icon: MapPin, color: "text-yellow-600", bgColor: "bg-yellow-100", wrapperSize: "w-8 h-8" },
+      { icon: Film,   color: "text-violet-800", bgColor: "bg-violet-300", size: "w-7 h-7", wrapperSize: "w-12 h-12" },
+      { icon: Video,  color: "text-green-600",  bgColor: "bg-green-100",  size: "w-5 h-5", wrapperSize: "w-8 h-8" },
+      { icon: Users,  color: "text-purple-600", bgColor: "bg-purple-100", size: "w-5 h-5", wrapperSize: "w-8 h-8" },
+      { icon: MapPin, color: "text-yellow-600", bgColor: "bg-yellow-100", size: "w-5 h-5", wrapperSize: "w-8 h-8" },
     ],
     borderColor: "border-violet-200",
   },
 ];
 
-// Separate component gives TypeScript a clean, unambiguous call site
-// and avoids the overload resolution issue that occurs with inline icon rendering
 function CourseIcon({ iconData }: { iconData: IconData }) {
   const { icon: Icon, size, color, bgColor, wrapperSize, wrapperPadding } = iconData;
   return (
     <div
       className={[
         "flex items-center justify-center rounded-lg transition-transform hover:scale-110",
-        wrapperSize ?? "w-12 h-12",
+        wrapperSize ?? "w-10 h-10",
         wrapperPadding ?? "p-2",
         bgColor ?? "bg-gray-100",
       ].join(" ")}
     >
-      <Icon className={`${size ?? "h-7 w-7"} ${color}`} />
+      <Icon className={`${size ?? "h-6 w-6"} ${color}`} />
     </div>
   );
 }
 
 export default function CourseCards() {
   return (
-    <div>
+    <div className="min-h-screen bg-gray-50">
       <Navbar />
 
-      <div className="text-center mt-36 bg-gradient-light">
-        <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+      {/* Hero header */}
+      <div className="text-center px-4 pt-28 pb-8 sm:pt-36 sm:pb-10 bg-gradient-to-b from-white to-gray-50">
+        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-3 sm:mb-4">
           Our Training Programs
         </h2>
-        <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+        <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed px-2">
           Choose from our comprehensive range of tech courses designed to prepare
           you for high-demand careers in the digital economy.
         </p>
       </div>
 
-      <div className="grid grid-cols-2 lg:grid-cols-3 gap-8 p-15 mt-4">
+      {/* Course grid */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 px-4 sm:px-6 lg:px-12 xl:px-16 py-6 max-w-screen-xl mx-auto">
         {coursesData.map((course, index) => (
           <div
             key={index}
-            className={`bg-white rounded-2xl shadow-md p-6 border-2 ${course.borderColor} hover:shadow-xl transition-all duration-300 ease-in-out transform hover:-translate-y-3`}
+            className={`bg-white rounded-2xl shadow-sm p-4 sm:p-5 lg:p-6 border-2 ${course.borderColor} hover:shadow-xl transition-all duration-300 ease-in-out hover:-translate-y-1 sm:hover:-translate-y-2 flex flex-col`}
           >
-            <div className="flex flex-wrap gap-2 mb-6">
+            {/* Icons row */}
+            <div className="flex flex-wrap gap-2 mb-4">
               {course.icons.map((iconData, idx) => (
                 <CourseIcon key={idx} iconData={iconData} />
               ))}
             </div>
 
-            <h2 className="text-xl font-bold text-gray-900 mb-3">{course.title}</h2>
-            <p className="text-gray-600 mb-4 text-xl leading-relaxed">{course.description}</p>
+            {/* Title & description */}
+            <h2 className="text-base sm:text-lg font-bold text-gray-900 mb-2">{course.title}</h2>
+            <p className="text-gray-600 mb-4 text-sm sm:text-base leading-relaxed flex-1">{course.description}</p>
 
-            <div className="mb-4 flex justify-between">
-              <span className="text-sm font-medium text-gray-500">In-Person:</span>
-              <span className="ml-2 text-gray-900 font-bold">{course.format}</span>
-            </div>
-            <div className="mb-4 flex justify-between">
-              <span className="text-sm font-medium text-gray-500">Live Online:</span>
-              <span className="ml-2 text-gray-900 font-bold">{course.format1}</span>
-            </div>
-            <div className="mb-4 flex justify-between">
-              <span className="text-sm font-medium text-gray-500">Self-Paced:</span>
-              <span className="ml-2 text-gray-900 font-bold">{course.format2}</span>
-            </div>
-            <div className="mb-4 flex justify-between">
-              <span className="text-sm font-medium text-gray-500">Levels:</span>
-              <span className="ml-2 text-gray-900">{course.level}</span>
-            </div>
-            <div className="mb-4 flex justify-between">
-              <span className="text-sm font-medium text-gray-500">Duration (In-Person):</span>
-              <span className="ml-2 text-gray-900">{course.duration}</span>
-            </div>
-            <div className="mb-4 flex justify-between">
-              <span className="text-sm font-medium text-gray-500">Duration (Live Online):</span>
-              <span className="ml-2 text-gray-900">{course.duration1}</span>
-            </div>
-            <div className="mb-4 flex justify-between">
-              <span className="text-sm font-medium text-gray-500">Duration (Self-Paced):</span>
-              <span className="ml-2 text-gray-900">{course.duration2}</span>
+            {/* Pricing & details */}
+            <div className="space-y-2 mb-4 text-sm sm:text-base">
+              <div className="flex justify-between items-center">
+                <span className="text-gray-500 font-medium">In-Person</span>
+                <span className="text-gray-900 font-bold">{course.format}</span>
+              </div>
+              <div className="flex justify-between items-center">
+                <span className="text-gray-500 font-medium">Live Online</span>
+                <span className="text-gray-900 font-bold">{course.format1}</span>
+              </div>
+              <div className="flex justify-between items-center">
+                <span className="text-gray-500 font-medium">Self-Paced</span>
+                <span className="text-gray-900 font-bold">{course.format2}</span>
+              </div>
+
+              <div className="border-t border-gray-100 pt-2 mt-2 space-y-2">
+                <div className="flex justify-between items-center">
+                  <span className="text-gray-500 font-medium">Level</span>
+                  <span className="text-gray-800 text-right max-w-[55%]">{course.level}</span>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span className="text-gray-500 font-medium">In-Person Duration</span>
+                  <span className="text-gray-800">{course.duration}</span>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span className="text-gray-500 font-medium">Live Online Duration</span>
+                  <span className="text-gray-800">{course.duration1}</span>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span className="text-gray-500 font-medium">Self-Paced Duration</span>
+                  <span className="text-gray-800">{course.duration2}</span>
+                </div>
+              </div>
             </div>
 
-            <div className="flex space-x-3 mt-6">
-              {course.buttons.map((button, btnIndex) => {
-                if (btnIndex === 1) {
-                  return (
-                    <Link key={`${index}-enroll`} href="/Courses/Highlights">
-                      <button className="px-4 py-2 text-sm rounded-md font-medium w-40 bg-blue-600 text-white hover:bg-blue-700">
-                        {button}
-                      </button>
-                    </Link>
-                  );
-                }
-                return (
-                  <button
-                    key={`${index}-learn`}
-                    onClick={() => console.log("Learn more about", course.title)}
-                    className="px-4 py2 text-sm rounded-md font-medium w-40 bg-gray-100 text-gray-800 hover:bg-gray-200"
-                  >
-                    {button}
-                  </button>
-                );
-              })}
+            {/* Buttons */}
+            <div className="flex gap-2 mt-auto pt-2">
+              <button
+                onClick={() => console.log("Learn more about", course.title)}
+                className="flex-1 px-3 py-2 text-sm rounded-lg font-medium bg-gray-100 text-gray-800 hover:bg-gray-200 transition-colors"
+              >
+                Learn More
+              </button>
+              <Link href="/Courses/Highlights" className="flex-1">
+                <button className="w-full px-3 py-2 text-sm rounded-lg font-medium bg-blue-600 text-white hover:bg-blue-700 transition-colors">
+                  Enroll Now
+                </button>
+              </Link>
             </div>
           </div>
         ))}
-
-        <div className="flex mt-9 gap-4 w-100 items-center justify-center ml-100">
-          <button className="w-75 h-10 bg-blue-900 rounded-lg text-white text-1xl font-bold">
-            Enroll Now - Transform Your Career
-          </button>
-        </div>
       </div>
 
-      <div>
-        <Footer />
+      {/* Bottom CTA */}
+      <div className="flex justify-center px-4 py-10">
+        <button className="w-full max-w-sm sm:max-w-md h-12 bg-blue-900 rounded-xl text-white text-base font-bold hover:bg-blue-800 transition-colors px-6">
+          Enroll Now — Transform Your Career
+        </button>
       </div>
+
+      <Footer />
     </div>
   );
 }
